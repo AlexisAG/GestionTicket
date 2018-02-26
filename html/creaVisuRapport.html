@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+	<link rel="stylesheet" type="text/css" href="/css/styleCreaVisuRapport.css"/>
+</head>
+<body>
+	<h1>Rapport complet</h1>
+
+<div id="menusDeroulants">
+	<form id="createForm" action="/gestion/connect" method="post">
+		<table>
+			<tr>
+				<td>
+					<label for="ope">Opérateur : </label>
+				</td>
+				<td>
+					<select name="ope" id="ope">
+						<option value="default" disabled selected>Veuillez sélectionner un opérateur</option>
+						<option value="thibault">Thibault</option>
+						<option value="alexis">Alexis</option>
+						<option value="airy">Airy</option>
+						<option value="théo">Théo</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="dem">Demandeur : </label></td>
+				<td><select name="dem" id="dem">
+						<option value="default" disabled selected>Veuillez sélectionner un demandeur</option>
+							<option value="thibault">Connard 1</option>
+						<option value="alexis">Connard 2</option>
+						<option value="airy">Connard 3</option>
+						<option value="théo">Connard 4</option>
+					</select>
+				</td>
+			</tr>
+			<tr id="button"><td colspan=2><input type="submit" value="Créer un rapport"></td></tr>
+		</table>
+	</form>
+</div>
+</body>
+</html>
+		
