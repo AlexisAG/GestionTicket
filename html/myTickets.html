@@ -10,9 +10,9 @@
 
 	<section id='app'>
 		<div id="base">
-			<button class="col-lg-2 offset-lg-10">Déconnexion</button>
+			<button id="disconnect" class="col-lg-2 offset-lg-10" v-on:click="disconnect">Déconnexion</button>
 			<h1 class="col-lg-12 center">Gestion de mes tickets</h1>
-			<button class="col-lg-2">Envoyer un ticket au support</button>
+			<button id="send" class="col-lg-2" v-on:click="createTicket">Envoyer un ticket au support</button>
 			<h3 class="col-lg-12 center">Liste de vos tickets</h3>
 		</div>
 		
