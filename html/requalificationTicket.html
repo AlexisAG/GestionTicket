@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Requalification du ticket</title>
+	<link rel="stylesheet" type="text/css" href="/css/styleRequalificationTicket.css">
+</head>
+<body>
+	<div id="contenu">
+		<input id="fermeturePopup" type="submit" value="X">
+		<h1>Requalifier le ticket</h1>
+		
+		<table>
+			<tr>
+				<th>
+					<label for="menuTypePb">Type de problème</label>
+				</th>
+				<td>
+					<select name="menuTypePb" id="menuTypePb">
+						<option value="logiciel">Logiciel</option>
+						<option value="materiel">Matériel</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="menuPrecise">Problème précisé</label>
+				</th>
+				<td>
+					<select name="menuPrecise" id="menuPrecise">
+								<option value="multi">Multimédia</option>
+								<option value="os">Système d'exploitation</option>
+							</select>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<br>
+		<div id="checkLabel">
+			<label for="checkbox">Urgent&nbsp;&nbsp;</label><input id="checkbox" type="checkbox">
+		</div>
+		<br>
+		
+		<input id="button" type="submit">
+	</div>
+</body>
+</html>
+
+
