@@ -1,0 +1,49 @@
+#buttonRetour {
+	float: left;
+}
+
+h1 {
+	text-align: center;
+}
+
+#buttonDeco {
+	float: right;
+}
+
+#buttonsGestion {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 5%;
+}
+
+#buttonsTop {
+	width: 100%;
+}
+
+#ticket {
+	display: flex;
+	justify-content: center;
+	text-align: left;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+th {
+	padding-right: 15px;
+}
+
+label {
+	font-weight: bold;
+}
+
+
+#checkbox {
+	text-align: center;
+}
+
+#commentaire {
+	display: flex;
+	flex-direction: column;
+	width: 75%;
+	margin: auto;
+}

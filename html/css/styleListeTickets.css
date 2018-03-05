@@ -1,0 +1,28 @@
+#menus {
+	text-align: center;
+}
+
+label {
+	margin-left: 30px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+h1 {
+	text-align: center;
+}
+
+table {
+	width: 75%;
+	margin: auto;
+}
+
+td {
+	border: 2px solid red;
+	width: 100%;
+	text-align: center;
+}
+
+#buttonDeco {
+	float: right;
+}
