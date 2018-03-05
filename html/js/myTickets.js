@@ -9,8 +9,28 @@ var app = new Vue({
 	methods: {
 		load() {
 			axios.get("/loadMyTickets").then( (response)=>{
-				console.log(response.data.tickets);
+				response.data.tickets.forEach(function(item){  
+					$('#tickets').append("<div class='ticket'>" 
+						+"<div>"
+						+ "<h1> Statut : "+item.statut+"</h1>"
+						+ "<h2> Poste consterné : "+item.posteConcerne+"</h2>"
+						+ "<h3> Date d'ouverture du ticket : "+item.date+"</h3>"
+						+"</div>"
+						+"<div class='descr'>"
+						+"<h2> Description du problème : </h2>"
+						+"<h3>"+item.description+"</h3>"
+						+"<h3> Qualification : "+item.qualification+"</h3>"
+						+"<h3> Précision : "+item.precision+"</h3>"
+						+"</div>"
+						+ "</div>");
+				});
 			})
+		},
+		disconnect() {
+			document.location.href = "http://srv-tpinfo:8093";
+		},
+		createTicket() {
+			document.location.href = "http://srv-tpinfo:8093/sendTicket";
 		}
 	}
 });
