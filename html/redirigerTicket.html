@@ -3,22 +3,37 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Redirection du ticket</title>
-	<link rel="stylesheet" type="text/css" href="/css/styleRedirectionTicket.css">
+	<link rel="stylesheet" type="text/css" href="/css/styleGestionTicket.css">
 </head>
 <body>
-	<div id="contenu">
-		<input id="fermeturePopup" type="submit" value="X">
+	<section id="app">
+		<input id="fermeturePopupRedirection" type="submit" value="X">
 		<h1>Redirection du ticket</h1>
-		<label for="menuOpe">Opérateur</label>
-		<select name="menuOpe" id="menuOpe">
-			<option value="thibault">Thibault</option>
-			<option value="alexis">Alexis</option>
-			<option value="airy">Airy</option>
-			<option value="théo">Théo</option>
-		</select>
-		<br/>
-		<br/>
-		<input id="button" type="submit">
-	</div>
+
+		<table>
+			<tr>
+				<th>
+					<label for="menuOpeRedirection">Opérateur</label>
+				</th>
+				<td>
+					<select name="menuOpeRedirection" id="menuOpeRedirection">
+						<option value="thibault">Thibault</option>
+						<option value="alexis">Alexis</option>
+						<option value="airy">Airy</option>
+						<option value="théo">Théo</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td height="20px"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input id="buttonRedirection" type="submit">
+				</td>
+			</tr>
+		</table>
+	</section>
 </body>
 </html>
+

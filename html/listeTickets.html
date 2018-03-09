@@ -6,53 +6,54 @@
 	<link rel="stylesheet" type="text/css" href="/css/styleListeTickets.css"/>
 </head>
 <body>
-	<form action="/gestion">
-		<input id="buttonDeco" type="submit" value="Déconnexion" action="/gestion">
-	</form>
+	<section id="app">
+		<form action="/gestion">
+			<input id="buttonDeco" type="submit" value="Déconnexion" action="/gestion">
+		</form>
 
-	<div id="menus">
-		<label>Filtres</label>
+		<div id="menus">
+			<label>Filtres</label>
 
-		<label for="menuNom">Nom : </label>
-		<select name="menuNom" id="menuNom">
-			<option value="thibault">Thibault</option>
-			<option value="alexis">Alexis</option>
-			<option value="airy">Airy</option>
-			<option value="theo">Théo</option>
-		</select>
-		
-		<label for="menuID">ID : </label>
-		<select name="menuID" id="menuID">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-		</select>
-		
-		<label for="menuStatut">Statut : </label>
-		<select name="menuStatut" id="menuStatut">
-			<option value="nonTraite">Non traité</option>
-			<option value="enCoursTraitement">En cours de traitement</option>
-			<option value="resolu">Résolu</option>
-		</select>
-	</div>
-	<h1>Liste de vos tickets</h1>
+			<label for="menuNom">Nom : </label>
+			<select name="menuNom" id="menuNom">
+				<option value="thibault">Thibault</option>
+				<option value="alexis">Alexis</option>
+				<option value="airy">Airy</option>
+				<option value="theo">Théo</option>
+			</select>
 
-	<table>
-		<tr>
-			<td>Ticket 1 *TODO : Insérer depuis la BDD*</td>
-		</tr>
-		<tr>
-			<td>Ticket 2 *TODO : Insérer depuis la BDD*</td>
-		</tr>
-		<tr>
-			<td>Ticket 3 *TODO : Insérer depuis la BDD*</td>
-		</tr>
-	</table>
+			<label for="menuID">ID : </label>
+			<select name="menuID" id="menuID">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+			</select>
 
-<form action="/gestion/connect/test" method="post">
-	<input type="submit" value="voir page en cours de dev">
-</form>
-	
+			<label for="menuStatut">Statut : </label>
+			<select name="menuStatut" id="menuStatut">
+				<option value="nonTraite">Non traité</option>
+				<option value="enCoursTraitement">En cours de traitement</option>
+				<option value="resolu">Résolu</option>
+			</select>
+		</div>
+		<h1>Liste de vos tickets</h1>
+
+		<table>
+			<tr>
+				<td>Ticket 1 *TODO : Insérer depuis la BDD*</td>
+			</tr>
+			<tr>
+				<td>Ticket 2 *TODO : Insérer depuis la BDD*</td>
+			</tr>
+			<tr>
+				<td>Ticket 3 *TODO : Insérer depuis la BDD*</td>
+			</tr>
+		</table>
+
+		<form action="/gestion/connect/test" method="post">
+			<input type="submit" value="voir page en cours de dev">
+		</form>
+	</section>
 </body>
 </html>
