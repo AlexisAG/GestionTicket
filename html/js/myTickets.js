@@ -3,9 +3,6 @@ var app = new Vue({
 	created() { 
 		this.load()
 	},
-	data: {
-		ticket: null
-	},
 	methods: {
 		load() {
 			axios.get("/loadMyTickets").then( (response)=>{
@@ -27,7 +24,9 @@ var app = new Vue({
 			})
 		},
 		disconnect() {
-			document.location.href = "http://srv-tpinfo:8093";
+			axios.get("/disconnect").then( (response)=>{
+				window.location = "/";				    
+			})
 		},
 		createTicket() {
 			document.location.href = "http://srv-tpinfo:8093/sendTicket";

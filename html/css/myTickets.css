@@ -7,4 +7,4 @@ html { color: red; }
 .center { text-align: center; }
 .ticket { display: flex; justify-content: space-between; flex-direction: row; border-style: solid; margin-bottom: 15px; }
 .descr {width: 50%;}
-#tickets { display: flex; justify-content: center;}
+#tickets { display: flex; justify-content: center; flex-direction: column;}
