@@ -29,7 +29,7 @@ var app = new Vue({
 			})
 		},
 		createTicket() {
-			document.location.href = "http://srv-tpinfo:8093/sendTicket";
+			window.location = "/sendTicket";
 		}
 	}
 });

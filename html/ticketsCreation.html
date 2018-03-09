@@ -10,7 +10,7 @@
 <body>
 	<div id='appTicketCreation' class="AppCreationContainer">
 		<div class="row">
-			<div class="col-lg-1 offset-lg-11"><button class="ButtonStylized">Deconnexion</button></div>
+			<div class="col-lg-1 offset-lg-11"><button v-on:click='disconnect()' class="ButtonStylized">Deconnexion</button></div>
 		    
 		</div>
 		<div class="row">
@@ -18,7 +18,7 @@
 		</div>
 
 		<div class="row">
-			<div class="col-lg-2 "><button class="ButtonStylized">Retourner aux tickets</button></div>
+			<div class="col-lg-2 "><button v-on:click='returnTicket()' class="ButtonStylized">Retourner aux tickets</button></div>
 		</div>
 
 		<div class="row">
@@ -61,7 +61,7 @@
 		</div>
 	</div>
 
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/js/vuejs.js"></script>
 	<script type="text/javascript" src="/js/axios.js"></script>
