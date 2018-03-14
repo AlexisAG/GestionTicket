@@ -54,8 +54,7 @@ app.get("/", function (req,res) {
     else if(sess.typeCompte == "internaute")
         res.sendFile(__dirname + "/html/myTickets.html");
     else if(sess.typeCompte == "operateur")
-        console.log("faire la redirection pour les opérateurs");
-        //res.sendFile(__dirname  + "/html/myTickets.html");
+        res.sendFile(__dirname  + "/html/listeTickets.html");
 
 })
 .get("/gestionTicket", function(req,res) {
