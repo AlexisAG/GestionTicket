@@ -1,59 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta charset="UTF-8">
-	<title>Accueil opérateur</title>
-	<link rel="stylesheet" type="text/css" href="/css/styleListeTickets.css"/>
+	<title>Accueil</title>
+	<link rel="stylesheet" type="text/css" href="/css/listeTickets.css"/>
 </head>
 <body>
-	<section id="app">
-		<form action="/gestion">
-			<input id="buttonDeco" type="submit" value="Déconnexion" action="/gestion">
-		</form>
 
+	<section id='app'>
+		<button id="disconnect" class="col-lg-2 offset-lg-10" v-on:click="disconnect">Déconnexion</button>
 		<div id="menus">
 			<label>Filtres</label>
 
-			<label for="menuNom">Nom : </label>
-			<select name="menuNom" id="menuNom">
-				<option value="thibault">Thibault</option>
-				<option value="alexis">Alexis</option>
-				<option value="airy">Airy</option>
-				<option value="theo">Théo</option>
+			<label for="menuUrgent">Urgence : </label>
+			<select name="menuUrgent" id="menuUrgent">
+				<option value="All" selected>Tout</option>
+				<option value="Urgent" >Urgent</option>
+				<option value="Non urgent">Non urgent</option> 
 			</select>
-
-			<label for="menuID">ID : </label>
-			<select name="menuID" id="menuID">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
+			
+			<label for="menuQualification">Qualification : </label>
+			<select name="menuQualification" id="menuQualification">
+				<option value="All" selected>Tout</option>
 			</select>
-
-			<label for="menuStatut">Statut : </label>
-			<select name="menuStatut" id="menuStatut">
-				<option value="nonTraite">Non traité</option>
-				<option value="enCoursTraitement">En cours de traitement</option>
-				<option value="resolu">Résolu</option>
+			
+			<label for="menuPrecision">Precision : </label>
+			<select name="menuPrecision" id="menuPrecision">
+				<option value="All" selected>Tout</option>
 			</select>
 		</div>
 		<h1>Liste de vos tickets</h1>
 
-		<table>
-			<tr>
-				<td>Ticket 1 *TODO : Insérer depuis la BDD*</td>
-			</tr>
-			<tr>
-				<td>Ticket 2 *TODO : Insérer depuis la BDD*</td>
-			</tr>
-			<tr>
-				<td>Ticket 3 *TODO : Insérer depuis la BDD*</td>
-			</tr>
-		</table>
+		<div id='tickets'>
 
-		<form action="/gestion/connect/test" method="post">
-			<input type="submit" value="voir page en cours de dev">
-		</form>
+		</div>
+
 	</section>
+
+<script type="text/javascript" src="/js/vuejs.js"> </script>
+<script type="text/javascript" src="/js/axios.js"> </script>
+<script type="text/javascript" src="/js/listeTickets.js"> </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </body>
 </html>

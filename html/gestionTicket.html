@@ -6,194 +6,44 @@
 	<link rel="stylesheet" type="text/css" href="/css/styleGestionTicket.css">
 </head>
 <body>
-	<section id="app">
-		<table id="buttonsTop">
-			<tr>
-				<td><input id="buttonRetour" type="submit" value="Retourner aux tickets"></td>
-				<td><h1>Gestion des tickets</h1></td>
-				<td><input id="buttonDeco" type="submit" value="Déconnexion"></td>
-			</tr>
-		</table>
+	<section id='app'>
 
+
+		<h1>Gestion des tickets</h1>
+		<button id="disconnect" class="col-lg-2 offset-lg-10" v-on:click="disconnect">Déconnexion</button>
+		<button id="buttonRetour" class="col-lg-2 offset-lg-6" v-on:click="retour">Retour</button>
+
+
+
+		<!-- Boutons de gestions -->
 		<div id="buttonsGestion">
 			<table>
 				<tr>
-					<td><input id="btnTraiter" type="submit" value="Traiter le ticket"></td>
-					<td><input id="btnCloturer" type="submit" value="Clôturer le ticket"></td>
-					<td><input id="btnRequalifier" type="submit" value="Requalifier le problème"></td>
-					<td><input id="btnRediriger" type="submit" value="Rediriger le ticket"></td>
+					<td><input type="submit" value="Traiter le ticket"></td>
+					<td><input type="submit" value="Clôturer le ticket"></td>
+					<td><input type="submit" value="Requalifier le problème"></td>
+					<td><input type="submit" value="Rediriger le ticket"></td>
 				</tr>
 			</table>
 		</div>
+		<!-- Détail du ticket -->
+		<div id="tickets">
 
-		<table id="ticket">
-			<tr>
-				<th>Titre</th>
-				<td>a</td>
-			</tr>
-			<tr>
-				<th>Poste concerné</th>
-				<td>a</td>
-			</tr>
-			<tr>
-				<th>Type de problème</th>
-				<td>a</td>
-			</tr>
-			<tr>
-				<th>Problème précisé</th>
-				<td>a</td>
-			</tr>
-			<tr>
-				<th>Description</th>
-				<td>a</td>
-			</tr>
-			<tr id="checkbox">
-				<td colspan="2"><label for="cbx">Urgent  </label><input id="cbx" type="checkbox"></td>
-			</tr>
-			<tr>
-				<th>Statut</th><td>a</td>
-			</tr>
-		</table>
+		</div>
+		<!-- Commentaires -->
 		<h1>Liste des actions effectuées</h1>
-
 		<div id="commentaire">
 			<label for="textarea">Commentaire :</label>
 			<textarea id="textarea" type="text" rows=4></textarea>
 			<input type="submit" value="Poster">
 		</div>
-
-
 	</section>
 
-<!-- Pop-up avec fond blur -->
+<script type="text/javascript" src="/js/vuejs.js"> </script>
+<script type="text/javascript" src="/js/axios.js"> </script>
+<script type="text/javascript" src="/js/gestionTicket.js"> </script>
 
-	<div id="divBlur"></div>
-	<!-- Ajout traitement -->
-
-		<div id="contenuAjout">
-			<input id="fermeturePopupAjout" type="submit" value="X">
-			<h1>Ajouter un traitement</h1>
-
-			<table>
-				<tr>
-					<th>
-						<label for="taches">Tâche(s) effectuée(s)</label>
-					</th>
-					<td>
-						<input id="taches" type="text" placeholder="Tâche(s) effectuée(s)">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2"><label for="checkboxAjout">Problème(s) résolu  </label><input id="checkboxAjout" type="checkboxAjout"></td>
-				</tr>
-			</table>
-			<br>
-			<br>
-			<input id="buttonAjout" type="submit">
-		</div>
-
-		<!-- Redirection ticket -->
-
-		<div id="contenuRedirection">
-			<input id="fermeturePopupRedirection" type="submit" value="X">
-			<h1>Redirection du ticket</h1>
-			<table>
-				<tr>
-					<th>
-						<label for="menuOpe">Opérateur</label>
-					</th>
-					<td>
-						<select name="menuOpe" id="menuOpe">
-							<option value="thibault">Thibault</option>
-							<option value="alexis">Alexis</option>
-							<option value="airy">Airy</option>
-							<option value="théo">Théo</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input id="button" type="submit">
-					</td>
-				</tr>
-			</table>
-		</div>
-
-		<!-- Requalification ticket -->
-
-		<div id="contenuRequalification">
-			<input id="fermeturePopupRequalification" type="submit" value="X">
-			<h1>Requalifier le ticket</h1>
-
-			<table>
-				<tr>
-					<th>
-						<label for="menuTypePbRequalification">Type de problème</label>
-					</th>
-					<td>
-						<select name="menuTypePbRequalification" id="menuTypePbRequalification">
-							<option value="logiciel">Logiciel</option>
-							<option value="materiel">Matériel</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						<label for="menuPreciseRequalification">Problème précisé</label>
-					</th>
-					<td>
-						<select name="menuPreciseRequalification" id="menuPreciseRequalification">
-							<option value="multi">Multimédia</option>
-							<option value="os">Système d'exploitation</option>
-						</select>
-					</td>
-				</tr>
-			</table>
-			<br>
-			<br>
-			<div id="checkLabelRequalification">
-				<label for="checkboxRequalification">Urgent&nbsp;&nbsp;</label><input id="checkboxRequalification" type="checkboxRequalification">
-			</div>
-			<br>
-
-			<input id="buttonRequalification" type="submit">
-		</div>
-
-		<!-- Cloture ticket -->
-		<div id="contenuCloture">
-			<input id="fermeturePopupCloture" type="submit" value="X">
-			<h1>Clôturer le ticket</h1>
-
-			<table>
-				<tr>
-					<th>
-						<label for="checkboxCloture">Problème résolu</label>
-					</th> 
-					<td>
-						<input id="checkboxCloture" type="checkboxCloture">
-					</td>
-				</tr>
-				<tr>
-					<th>
-						<label for="menuPreciseRequalification">Problème précisé</label>
-					</th>
-					<td>
-						<select name="menuPreciseRequalification" id="menuPreciseRequalification">
-							<option value="multimedia">Multimédia</option>
-							<option value="os">Système d'exploitation</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="submit"></td>
-				</tr>
-			</table>
-
-		</div>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/JSGestionTicket.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </body>
 </html>
-
