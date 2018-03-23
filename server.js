@@ -1,9 +1,21 @@
+console.log("hop");
+
 var express = require("express");
+
+var Promise = require("promise");
+
 var app = express();
+
+/**Thibault**/
+var bodyParser = require('body-parser')
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+/****/
+
+
 var MongoClient = require("mongodb").MongoClient;
 
-
-//connexion à la bdd 
 var db;
 MongoClient.connect('mongodb://localhost:27017/gayale',
     function(err,_db)  {
@@ -15,9 +27,10 @@ MongoClient.connect('mongodb://localhost:27017/gayale',
         }
     });
 
-app.use("/css", express.static(__dirname + "/html/css"))
-.use("/images", express.static(__dirname + "/images"))
-.use("/js", express.static(__dirname + "/html/js"));
+
+app.use("/css", express.static(__dirname + "/html/css"));
+app.use("/images", express.static(__dirname + "/image"));
+app.use("/js", express.static(__dirname + "/html/js"));
 
 /* ALEXIS */
 var ObjectId = require('mongodb').ObjectId; 
@@ -55,6 +68,8 @@ app.get("/", function (req,res) {
         res.sendFile(__dirname + "/html/myTickets.html");
     else if(sess.typeCompte == "operateur")
         res.sendFile(__dirname  + "/html/listeTickets.html");
+    else if(sess.typeCompte == "chef")
+        res.sendFile(__dirname  + "/html/creaVisuRapport.html");
 
 })
 .get("/gestionTicket", function(req,res) {
@@ -64,10 +79,8 @@ app.get("/", function (req,res) {
         res.redirect('/');
     else
         res.sendFile(__dirname + "/html/gestionTicket.html");
-
 })
-/* Requete ajax */
-//get
+// Requete ajax
 .get("/disconnect", function(req,res){
     sess = req.session;
     req.session.destroy(function(err) {
@@ -88,6 +101,7 @@ app.get("/", function (req,res) {
         db.collection("tickets").find({ mailOpe:sess.mail }).toArray(function(err,tkts){
             res.json({ tickets: tkts });
         });
+
 })
 .get("/loadFilter", function(req,res){
     var qualification;
@@ -150,10 +164,20 @@ app.get("/", function (req,res) {
         }
         else {
             console.log("Bad login detected");
-            rep = { status : 401, message : "Status 401 : Bad login"};
+            rep = { status : 401, message : "Bad login"};
         }
         res.end(JSON.stringify(rep));
     });
+})
+.post("/manageTicket", function(req,res){
+    var rep;
+    db.collection("tickets").find( { _id:req.body._id} ).toArray(function(err,tkt){
+        if(tkt.length > 0)
+            rep = { item: tkt, status:200 };
+        else
+            rep = { status : 503, error:"DataBase error" };
+        res.end(JSON.stringify(rep));
+    })
 })
 .post("/setTicket", function(req,res){
     sess = req.session;
@@ -178,4 +202,205 @@ app.get("/", function (req,res) {
     db.collection("Compte").update( {mail:sess.mail}, {$inc: {nbRequalificationTicket:1}});
 });
 
-app.listen(8093);
+/**Thibault**/
+
+app.get("/sendTicket", function(req,res)
+{
+    sess = req.session;
+    console.log(sess.mail);
+    if(typeof sess.mail === "undefined" || sess.mail == "" || sess.mail == null)
+        res.redirect('/');
+    else if(sess.typeCompte == "internaute")
+        res.sendFile(__dirname + "/html/ticketsCreation.html");
+    else
+        res.redirect('/');
+});
+
+
+app.get("/qualification", function(req,res)
+{
+    db.collection("Qualification").find().toArray(function(err, value){
+        res.json({qualifications : value});
+    })
+});
+
+app.get("/precision/:qualification", function(req,res)
+{
+    console.log(req.params);
+    db.collection("Precision").find({qualification : req.params.qualification})
+    .toArray(function(err, value){
+        res.json({precisions : value});
+    });
+});
+
+app.get("/testGraph", function(req, res) {
+    res.sendFile(__dirname + "/html/creaVisuRapport.html")
+});
+
+
+
+app.post('/ticket/add', function(req, res) {
+    sess = req.session;
+    req.body.mail = sess.mail;
+    
+    /*
+    db.collection("tickets").insertOne(req.body, function(err, res) {
+        if (err) throw err;
+        console.log("1 user inserted");
+    });
+
+    /*Redirection ticket*/
+    console.log(req.body);
+    if(req.body.precision != null && req.body.precision != " ")
+    {
+        db.collection("Compte").find({typeCompte:"operateur",competence : req.body.precision})
+        .toArray(function(err, value){
+            var nbTicket = 1000;
+            var mailCpt;
+
+            var all = [];
+
+            value.forEach(function(item){
+
+                all.push(new Promise(function(resolve, reject) {
+
+                    db.collection("tickets").find({mailOpe:item.mail}).count()
+                    .then(function(tempNbTicket){
+                            if(tempNbTicket < nbTicket)
+                            {
+                                console.log("hop");
+                                nbTicket = tempNbTicket;
+                                mailCpt = item.mail;
+                                console.log("mailSearch : "+mailCpt);
+                                
+                            }
+                            resolve();
+                        })
+                }))
+            });
+
+            Promise.all(all).then(function(){
+                req.body.mailOpe = mailCpt;
+                console.log("MailOpe : "+req.body.mailOpe);
+
+                
+                db.collection("tickets").insertOne(req.body, function(err, res) {
+                    if (err) throw err;
+                    console.log("1 user inserted");
+                });
+                
+            })
+
+            
+        });
+    }
+    else
+    {
+        db.collection("Compte").find({typeCompte:"operateur"})
+        .toArray(function(err, value){
+            console.log(value);
+            var nbTicket = 1000;
+            var mailCpt;
+            var all = [];
+
+            value.forEach(function(item){
+                
+                all.push(new Promise(function(resolve, reject) {
+
+                    db.collection("tickets").find({mailOpe:item.mail}).count()
+                    .then(function(tempNbTicket){
+                        console.log(tempNbTicket);
+                        if(tempNbTicket < nbTicket)
+                        {
+                            nbTicket = tempNbTicket;
+                            mailCpt = item.mail;
+                            console.log("mailSearch : "+mailCpt);
+                        }
+                        resolve();
+                    })
+                }))
+            });
+            
+            Promise.all(all).then(function(){
+                req.body.mailOpe = mailCpt;
+                console.log("MailOpe : "+req.body.mailOpe);
+
+                
+                db.collection("tickets").insertOne(req.body, function(err, res) {
+                    if (err) throw err;
+                    console.log("1 user inserted");
+                });
+                
+            })
+            
+        });
+    }
+    
+
+
+    var response = {
+    status  : 200,
+    success : 'Updated Successfully'
+    }
+
+    res.end(JSON.stringify(response));
+});
+
+
+/*New*/
+app.post("/createRapport", function(req,res){
+    var rep={};
+    var all = [];
+
+    all.push(new Promise(function(resolve, reject) {
+
+        db.collection("tickets").find({mailOpe:req.body.mailOpe, statut:"En cours"}).count()
+        .then(function(tempNbTicketEnCours){
+            rep.ticketEnCour = tempNbTicketEnCours;
+            resolve();
+            
+        })
+    }));
+
+    all.push(new Promise(function(resolve, reject) {
+
+        db.collection("tickets").find({mailOpe:req.body.mailOpe, statut:"Cloturer"}).count()
+        .then(function(tempNbTicketCloturer){
+            rep.ticketCloturer = tempNbTicketCloturer;
+            resolve();
+            
+        })
+    }));
+
+    all.push(new Promise(function(resolve, reject) {
+
+        db.collection("Compte").find({mail:req.body.mailOpe}).toArray(function(err, value){
+            console.log(value[0].nbTicketRediriger);
+            rep.ticketRediriger = value[0].nbTicketRediriger;
+            resolve();
+            
+        })
+    }));
+
+    Promise.all(all).then(function(){
+
+        res.json({info : rep});
+        
+        var response = {
+        status  : 200,
+        success : 'Updated Successfully'
+        }
+
+    });
+});
+
+
+app.post("/getOpe", function(req,res){
+    db.collection("Compte").find({ typeCompte: "operateur"}).toArray(function(err,ops){
+            res.json({ operateurs: ops });
+    });
+});
+
+/****/
+
+app.listen(8125);
