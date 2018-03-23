@@ -7,6 +7,7 @@ var app = new Vue({
 		load() {
 			axios.get("/loadMyTickets").then( (response)=>{
 				response.data.tickets.forEach(function(item){  
+					console.log(item._id);
 					$('#tickets').append("<div class='ticket'>" 
 						+"<div>"
 						+ "<h1> Statut : "+item.statut+"</h1>"
@@ -29,7 +30,7 @@ var app = new Vue({
 			})
 		},
 		createTicket() {
-			window.location  = "/sendTicket";
+			window.location = "/sendTicket";
 		}
 	}
 });

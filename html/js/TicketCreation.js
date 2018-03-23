@@ -30,7 +30,7 @@ var ticketCreation = new Vue({
 			axios.post('/ticket/add',data)
 			.then(function(response){
 				console.log(response);
-				window.location("/accueil");
+				window.location="/accueil";
 			});
 		},
 
