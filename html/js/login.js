@@ -11,10 +11,12 @@ var app = new Vue({
 					.then( (response)=>{
 						console.log(response.data.message + " pas dans erreur");
 						if(response.data.status == 200)
-							window.location = "/accueil";				    
+							window.location = "/accueil";	
+						else
+							alert(response.data.message);			    
 					})
 					.catch(error => {
-						console.log(error.data.message);
+						alert(error);
 					});
 			}
 		}

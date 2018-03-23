@@ -8,34 +8,51 @@
 <body>
 	<section id='app'>
 
-
-		<h1>Gestion des tickets</h1>
-		<button id="disconnect" class="col-lg-2 offset-lg-10" v-on:click="disconnect">Déconnexion</button>
-		<button id="buttonRetour" class="col-lg-2 offset-lg-6" v-on:click="retour">Retour</button>
-
-
-
-		<!-- Boutons de gestions -->
-		<div id="buttonsGestion">
-			<table>
-				<tr>
-					<td><input type="submit" value="Traiter le ticket"></td>
-					<td><input type="submit" value="Clôturer le ticket"></td>
-					<td><input type="submit" value="Requalifier le problème"></td>
-					<td><input type="submit" value="Rediriger le ticket"></td>
-				</tr>
-			</table>
+		<div id='redirection'>
+			<h2>Veuillez selectionner un opérateur dans la liste ci-dessous</h2>
+			<select id='operator'>
+				
+			</select>
+			<button id="validation_redirection" v-on:click="rediriger">Rediriger le problème</button>
 		</div>
-		<!-- Détail du ticket -->
-		<div id="tickets">
-
+		
+		<div id='requalification'>
+			<h2>Veuillez selectionner une qualification dans la liste ci-dessous</h2>
+			<select id='menuQualification'>
+				
+			</select>
+			<select id='menuPrecision'>
+				
+			</select>
+			<button id="validation_requalification" v-on:click="requalifier">Requalifier le problème</button>
 		</div>
-		<!-- Commentaires -->
-		<h1>Liste des actions effectuées</h1>
-		<div id="commentaire">
-			<label for="textarea">Commentaire :</label>
-			<textarea id="textarea" type="text" rows=4></textarea>
-			<input type="submit" value="Poster">
+
+		<div id='content'>
+			<h1>Gestion des tickets</h1>
+			<button id="disconnect" class="col-lg-2 offset-lg-10" v-on:click="disconnect">Déconnexion</button>
+			<button id="buttonRetour" class="col-lg-2 offset-lg-6" v-on:click="retour">Retour</button>
+
+			<!-- Boutons de gestions -->
+			<div id="buttonsGestion">
+				<table>
+					<tr>
+						<td><button id="cloture" v-on:click="cloture">Clôturer le ticket</button></td>
+						<td><button id="requalifier" v-on:click="loadQualification">Requalifier le problème</button></td>
+						<td><button id="rediriger" v-on:click="loadOperator">Rediriger le problème</button></td>
+					</tr>
+				</table>
+			</div>
+			<!-- Détail du ticket -->
+			<div id="tickets">
+
+			</div>
+			<!-- Commentaires -->
+			<h1>Liste des actions effectuées</h1>
+			<div id="commentaire">
+				<label for="textarea">Commentaire :</label>
+				<textarea id="textarea" type="text" rows=4></textarea>
+				<input type="submit" value="Poster">
+			</div>
 		</div>
 	</section>
 

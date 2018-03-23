@@ -60,7 +60,7 @@ var app = new Vue({
 					this.loadTicket();
 				}
 				else
-					console.log(response.data.message);
+					alert(response.data.message);
 			})
 		},
 		setTicket(id){
@@ -68,10 +68,12 @@ var app = new Vue({
 				axios.post("/setTicket",data)
 					.then( (response)=>{
 						if(response.data.status == 200)
-							window.location = "/gestionTicket";				    
+							window.location = "/gestionTicket";	
+						else
+							alert(response.data.message);			    
 					})
 					.catch(error => {
-						console.log(error.data.message);
+						alert(error);
 					});
 		},
 		disconnect() {

@@ -47,3 +47,16 @@ label {
 	width: 75%;
 	margin: auto;
 }
+
+#content {
+	z-index: 1;
+}
+
+#requalification {
+	z-index: 10;
+	display: none;
+}
+#redirection {
+	z-index: 10;
+	display: none;
+}
