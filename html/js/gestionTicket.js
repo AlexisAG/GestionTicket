@@ -53,6 +53,7 @@ var app = new Vue({
 				})
 		},
 		loadQualification(){
+			$('#redirection').css('display','none');
 			$('#menuQualification').empty();
 			$('#menuPrecision').empty();
 			axios.get("/loadFilter").then( (response)=>{
@@ -71,6 +72,7 @@ var app = new Vue({
 			})
 		},
 		loadOperator(){
+			$('#requalification').css('display','none');
 			$('#operator').empty();
 			axios.get('/loadOperator').then( (response)=>{
 				if(response.data.status != 503) {
@@ -89,10 +91,11 @@ var app = new Vue({
 			data = {};
 
 			data.qualification = $('#menuQualification').val();
-			data.precision = $('menuPrecision').val();
+			data.precision = $('#menuPrecision').val();
 
 			axios.post('/requalificationTicket',data).then( (response)=>{
 				$('#requalification').css('display','none');
+				window.location = "/gestionTicket";	
 			})
 
 		},
@@ -102,6 +105,7 @@ var app = new Vue({
 
 			axios.post('/redirigerTicket',data).then( (response)=>{
 				$('#redirection').css('display','none');
+				window.location = "/gestionTicket";
 			})
 		}
 	}
