@@ -195,11 +195,13 @@ app.get("/", function (req,res) {
     sess = req.session;
     db.collection("tickets").update( {_id : new ObjectId(sess.ticket[0]._id)}, {$set: { qualification:req.body.qualification, precision:req.body.precision}});
     db.collection("Compte").update( {mail:sess.mail}, {$inc: {nbRequalificationTicket:1}});
+    updateTicketSession();
 })
 .post("/redirigerTicket", function(req,res){
     sess = req.session;
     db.collection("tickets").update( {_id : new ObjectId(sess.ticket[0]._id)}, {$set: { mailOpe:req.body.mailOpe}});
     db.collection("Compte").update( {mail:sess.mail}, {$inc: {nbRequalificationTicket:1}});
+    updateTicketSession();
 });
 
 /**Thibault**/
