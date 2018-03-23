@@ -4,17 +4,21 @@
 	<meta charset="UTF-8">
 	<title>Test</title>
 	<link rel="stylesheet" type="text/css" href="/css/styleCreaVisuRapport.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
 </head>
 <body>
 	<svg width=10 height=20 xmlns="http://www.w3.org/2000/svg"><g></g></svg>
 
 	<section id="app">
-		<h1>Rapport complet</h1>
+		<div class="col-md-2 offset-md-10" >
+			<button v-on:click="disconnect()">Déconnexion</button>
+		</div>
+		<h1 class='center'>Rapport complet</h1>
 
 		<div id="menusDeroulants">
-			<label for="ope">Opérateur : </label>
+			<label for="ope" class="col-md-2 offset-md-4">Opérateur : </label>
 
-			<select name="ope" id="ope">
+			<select class="col-md-2" name="ope" id="ope">
 			</select>
 
 			<!--<label for="dem">Demandeur : </label>
@@ -26,7 +30,8 @@
 				<option value="airy">Demandeur 3</option>
 				<option value="théo">Demandeur 4</option>
 			</select> -->
-			<button v-on:click = "createChart()">Créer</button>
+			<br>
+			<button class="col-md-2 offset-md-5" v-on:click = "createChart()">Créer</button>
 
 			<!-- TODO -->
 			<!-- Ajouter graphique de stats après click sur bouton -->
