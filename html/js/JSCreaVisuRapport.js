@@ -17,6 +17,13 @@ var ticketCreation = new Vue({
                 
             });
         },
+        disconnect()
+        {
+            axios.get("/disconnect").then( (response)=>{
+                window.location = "/";                  
+            })
+        }
+        ,
         createChart() {
             var data ={mailOpe : $("#ope").val()};
 
